@@ -1,28 +1,44 @@
 /* eslint-disable */
 
-import React, { lazy, Suspense, useState } from 'react';
-import { Row, Col, Skeleton } from 'antd';
+import React, { lazy, Suspense, useState, useLayoutEffect } from 'react'; 
+import { useSelector } from 'react-redux';
+import { Row, Col, Skeleton, Table } from 'antd';
 import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { Main } from '../styled';
 import DoughnutChart from '../../components/charts/DoughnutChart';
-import ChartJs from '../charts/ChartJs';
+import ChartJs from '../../container/charts/ChartJs';
 import { Google3dPieChart } from '../../components/charts/google-chart';
 import gCharts from '../../demoData/google-charts.json';
 import rechartData from '../../demoData/recharts.json'
+import config from '../../config/config';
 
-const { chartjsDonutChart } = ChartJs;
+const {chartjsDonutChart} = ChartJs;
 const { pieChartData } = gCharts;
-const { data, positiveAndNegative } = rechartData;
+const { data } = rechartData;
 
 
 
 function Planner() {
-    const [state, setState] = useState({
+  
+  const [state, setState] = useState({
         responsive: 0,
       });
       const { responsive } = state;
+      useLayoutEffect(() => {
+        function updateSize() {
+          const element = document.querySelector('.recharts-wrapper');
+          const width =
+            element !== null
+              ? element.closest('.ant-card-body').clientWidth
+              : document.querySelector('.ant-card-body').clientWidth;
+          setState({ responsive: width });
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize();
+        return () => window.removeEventListener('resize', updateSize);
+      }, []);
 
   const PageRoutes = [
     {
@@ -34,6 +50,44 @@ function Planner() {
       breadcrumbName: 'Planner',
     },
   ];
+  const dataSource = [
+    {
+      key: '1',
+      name: 'Volume',
+      age: 32,
+      address: '32',
+    },
+    {
+      key: '2',
+      name: 'NSV',
+      age: 42,
+      address: '32',
+    },
+    {
+      key: '3',
+      name: 'MS%',
+      age: 42,
+      address: '32',
+    },
+  ];
+
+  const columns = [
+    {
+      title: 'Current',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'My Brand',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Total Category Value',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
 
   return (
     <>
@@ -42,7 +96,7 @@ function Planner() {
       <Main>
         <Row gutter={25}>
           <Col md={12} xs={24}>
-            <Cards title="Donut Chart" size="large">
+            <Cards title="Market Share" size="large">
               <DoughnutChart {...chartjsDonutChart} />
             </Cards>
           </Col>
@@ -60,10 +114,12 @@ function Planner() {
         </Row>
         <Row gutter={25}>
         <Col md={12} xs={24}>
-
+          <Cards title="Metrics">
+            <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+          </Cards>
         </Col>
         <Col md={12} xs={24}>
-            <Cards title="STACKED BAR CHART" size="large" more={false}>
+            <Cards title="CSF" size="large" more={false}>
               <BarChart
                 width={responsive - (5 * responsive) / 100}
                 height={responsive / 2}
@@ -80,8 +136,8 @@ function Planner() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="pv" stackId="a" fill="#8884d8" />
-                <Bar dataKey="uv" stackId="a" fill="#82ca9d" />
+                <Bar dataKey="csf" stackId="a" fill="#82ca9d" />
+                {/* <Bar dataKey="uv" stackId="a" fill="#82ca9d" /> */}
               </BarChart>
             </Cards>
           </Col>

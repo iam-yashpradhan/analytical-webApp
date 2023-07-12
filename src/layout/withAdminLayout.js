@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
+/* eslint-disable */
+
 import UilEllipsisV from '@iconscout/react-unicons/icons/uil-ellipsis-v';
 import { Button, Col, Layout, Row } from 'antd';
 import propTypes from 'prop-types';
@@ -152,7 +154,7 @@ const ThemeLayout = (WrappedComponent) => {
                     {topMenu && window.innerWidth > 991 ? (
                       <TopMenuSearch>
                         <div className="top-right-wrap d-flex">
-                          <AuthInfo />
+                        <AuthInfo />
                         </div>
                       </TopMenuSearch>
                     ) : (
@@ -215,7 +217,7 @@ const ThemeLayout = (WrappedComponent) => {
                     <Row>
                       <Col md={12} xs={24}>
                         <span className="admin-footer__copyright">
-                          © 2023<Link to="#">SovWare</Link>
+                          © 2023<Link to="#">Cogitaas</Link>
                         </span>
                       </Col>
                       <Col md={12} xs={24}>
