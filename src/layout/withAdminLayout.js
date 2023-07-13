@@ -152,11 +152,11 @@ const ThemeLayout = (WrappedComponent) => {
                   </div>
                   <div className="ninjadash-nav-actions">
                     {topMenu && window.innerWidth > 991 ? (
-                      <TopMenuSearch>
+                     
                         <div className="top-right-wrap d-flex">
                         <AuthInfo />
                         </div>
-                      </TopMenuSearch>
+                      
                     ) : (
                       <AuthInfo />
                     )}

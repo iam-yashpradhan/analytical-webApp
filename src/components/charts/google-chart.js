@@ -1,4 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
+/* eslint-disable */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Chart } from 'react-google-charts';
@@ -284,7 +286,7 @@ GoogleBasicPieChart.propTypes = {
 };
 
 function Google3dPieChart(props) {
-  const { width, height, data, chartArea, title } = props;
+  const { width, height, data, chartArea, title, colors } = props;
   return (
     <Chart
       width={width}
@@ -294,6 +296,7 @@ function Google3dPieChart(props) {
       data={data}
       options={{
         title,
+        colors,
         chartArea: { width: chartArea },
         is3D: true,
       }}
@@ -309,6 +312,7 @@ Google3dPieChart.propTypes = {
   data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   chartArea: PropTypes.string.isRequired,
+  colors: PropTypes.array.isRequired
 };
 
 export {

@@ -1,3 +1,6 @@
+/* eslint-disable */
+
+
 import UilAngleDown from '@iconscout/react-unicons/icons/uil-angle-down';
 import UilBell from '@iconscout/react-unicons/icons/uil-bell';
 import UilDollarSign from '@iconscout/react-unicons/icons/uil-dollar-sign';
@@ -5,11 +8,15 @@ import UilSetting from '@iconscout/react-unicons/icons/uil-setting';
 import UilSignout from '@iconscout/react-unicons/icons/uil-signout';
 import UilUser from '@iconscout/react-unicons/icons/uil-user';
 import UilUsersAlt from '@iconscout/react-unicons/icons/uil-users-alt';
-import { Avatar } from 'antd';
+import { Avatar, Select } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+
+import UilCalendar from '@iconscout/react-unicons/icons/uil-calendar-alt';
+import { DateRangePickerOne } from '../../datePicker/datePicker';
+import { Button } from '../../buttons/buttons';
 
 import { InfoWraper, NavAuth, UserDropDwon } from './auth-info-style';
 import Message from './Message';
@@ -22,6 +29,8 @@ import { Dropdown } from '../../dropdown/dropdown';
 import Heading from '../../heading/heading';
 import { Popover } from '../../popup/popup';
 
+const { Option, OptGroup } = Select;
+const content = <DateRangePickerOne />;
 const AuthInfo = React.memo(() => {
   const dispatch = useDispatch();
 
@@ -42,13 +51,13 @@ const AuthInfo = React.memo(() => {
     <UserDropDwon>
       <div className="user-dropdwon">
         <figure className="user-dropdwon__info">
-          <img src={require('../../../static/img/avatar/chat-auth.png')} alt="" />
+          {/* <img src={require('../../../static/img/avatar/chat-auth.png')} alt="" /> */}
           <figcaption>
-            <Heading as="h5">Abdullah Bin Talha</Heading>
-            <p>UI Expert</p>
+            <Heading as="h5">Yash Pradhan</Heading>
+            <p>Cogitaas</p>
           </figcaption>
         </figure>
-        <ul className="user-dropdwon__links">
+        {/* <ul className="user-dropdwon__links">
           <li>
             <Link to="#">
               <UilUser /> Profile
@@ -74,7 +83,7 @@ const AuthInfo = React.memo(() => {
               <UilBell /> Help
             </Link>
           </li>
-        </ul>
+        </ul> */}
         <Link className="user-dropdwon__bottomAction" onClick={SignOut} to="#">
           <UilSignout /> Sign Out
         </Link>
@@ -108,24 +117,61 @@ const AuthInfo = React.memo(() => {
     </NavAuth>
   );
 
+  const headerButton = (
+    {
+      width: 150, 
+      margin: '0 10px', 
+      borderRadius: '6px', 
+      height: '38px'
+    }
+  )
+  // const calendarView = () => {
+  //   return (
+  //     content
+  //   )
+  // }
+
   return (
+    
     <InfoWraper>
-      <Search />
-      <Message />
+      {/* <Search /> */}
+      
+      <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="Select your Project"
+                optionFilterProp="children"
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              >
+                <Option value="jack">Germany</Option>
+                <Option value="lucy">France</Option>
+                <Option value="tom">United Kingdom</Option>
+        </Select>
+        <Popover placement="bottomRight" title="Search by Calendar" content={content} action="hover">
+          <Button size="large" type="white" style = {headerButton}>
+            <UilCalendar />
+            Date Range
+          </Button>
+        </Popover>
+        {/* <Button size="large" type="white" onClick={calendarView}>
+          <UilCalendar />
+          Calendar
+        </Button> */}
+      {/* <Message />
       <Notification />
-      <Settings />
-      <div className="ninjadash-nav-actions__item ninjadash-nav-actions__language">
+      <Settings /> */}
+      {/* <div className="ninjadash-nav-actions__item ninjadash-nav-actions__language">
         <Dropdown placement="bottomRight" content={country} trigger="click">
           <Link to="#" className="ninjadash-nav-action-link">
             <img src={require(`../../../static/img/flag/${flag}.png`)} alt="" />
           </Link>
         </Dropdown>
-      </div>
+      </div> */}
       <div className="ninjadash-nav-actions__item ninjadash-nav-actions__author">
         <Popover placement="bottomRight" content={userContent} action="click">
           <Link to="#" className="ninjadash-nav-action-link">
             <Avatar src="https://cdn0.iconfinder.com/data/icons/user-pictures/100/matureman1-512.png" />
-            <span className="ninjadash-nav-actions__author--name">Md. Rafiq</span>
+            <span className="ninjadash-nav-actions__author--name">Yash Pradhan</span>
             <UilAngleDown />
           </Link>
         </Popover>
