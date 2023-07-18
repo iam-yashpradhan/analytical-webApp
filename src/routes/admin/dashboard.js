@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -14,6 +16,8 @@ const DemoTen = lazy(() => import('../../container/dashboard/DemoTen'));
 const NotFound = lazy(() => import('../../container/pages/404'));
 
 const Planner = lazy(() => import('../../container/dashboard/ScenarioPlanner'));
+const Simulation = lazy(() => import('../../container/dashboard/Simulation'));
+
 
 function DashboardRoutes() {
   return (
@@ -28,7 +32,10 @@ function DashboardRoutes() {
       <Route path="demo-8" element={<DemoEight />} />
       <Route path="demo-9" element={<DemoNine />} />
       <Route path="demo-10" element={<DemoTen />} />
+
       <Route path="planner" element={<Planner />} />
+      <Route path="simulation" element={<Simulation />} />
+      
 
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -7,6 +7,7 @@ const Login = lazy(() => import('../container/profile/authentication/overview/Si
 const SignUp = lazy(() => import('../container/profile/authentication/overview/Signup'));
 const FbLogin = lazy(() => import('../container/profile/authentication/overview/FbSignIn'));
 const FbSignUp = lazy(() => import('../container/profile/authentication/overview/FbSignup'));
+const ProjectHome = lazy(() => import('../container/profile/authentication/overview/ProjectHome'));
 // const NotFound = lazy(() => import('../container/pages/404'));
 
 const AuthRoot = () => {
@@ -18,11 +19,12 @@ const AuthRoot = () => {
 const FrontendRoutes = React.memo(() => {
   return (
     <Routes>
-      <Route index element={<Login />} />
+      <Route path="" element={<Login />} />
       <Route path="forgotPassword" element={<ForgotPass />} />
       <Route path="register" element={<SignUp />} />
       <Route path="fbRegister" element={<FbSignUp />} />
       <Route path="fbSignIn" element={<FbLogin />} />
+      <Route path="projectHome" element={<ProjectHome />} />
       {/* <Route path="*" element={<NotFound />} /> */}
       <Route path="*" element={<AuthRoot />} />
     </Routes>

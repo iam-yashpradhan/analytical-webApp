@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Carousel } from 'antd';
 import React from 'react';
 import propTypes from 'prop-types';

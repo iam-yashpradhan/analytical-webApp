@@ -299,6 +299,7 @@ function Google3dPieChart(props) {
         colors,
         chartArea: { width: chartArea },
         is3D: true,
+        
       }}
       // For tests
       rootProps={{ 'data-testid': '9' }}
@@ -312,7 +313,8 @@ Google3dPieChart.propTypes = {
   data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   chartArea: PropTypes.string.isRequired,
-  colors: PropTypes.array.isRequired
+  colors: PropTypes.array.isRequired,
+legend: PropTypes.array.isRequired,
 };
 
 export {
