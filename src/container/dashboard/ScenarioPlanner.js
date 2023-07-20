@@ -121,7 +121,7 @@ function Planner() {
       <PageHeader className="ninjadash-page-header-main" title="Current Scenario" routes={PageRoutes} />
 
       <Main>
-        <Cards title="Channels">
+        <Cards title="Channel">
               <Menu mode="horizontal">
                 <Item key="chnl-1" icon={<MailOutlined />}>
                   Hypermarkets
