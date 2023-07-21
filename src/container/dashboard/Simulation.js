@@ -8,16 +8,24 @@ import { PageHeader } from '../../components/page-headers/page-headers';
 import { Cards } from '../../components/cards/frame/cards-frame';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Label, Legend, ReferenceLine, ResponsiveContainer, LabelList} from 'recharts';
 import { Main } from '../styled';
+import UilLayers from '@iconscout/react-unicons/icons/uil-layers';
 import DoughnutChart from '../../components/charts/DoughnutChart';
 import ChartJs from '../../container/charts/ChartJs';
 import { Google3dPieChart } from '../../components/charts/google-chart';
 import gCharts from '../../demoData/google-charts.json';
-import rechartData from '../../demoData/recharts.json'
+import rechartData from '../../demoData/recharts.json';
+import {ReloadOutlined} from '@ant-design/icons';
+import { Button, BtnGroup } from '../../components/buttons/buttons';
 import config from '../../config/config';
 import {Slider} from '../../components/slider/slider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+
+
 
 
 const { pieChartData } = gCharts;
+const { data, dataRPI } = rechartData;
 
 const barChartData = [
   {
@@ -83,6 +91,81 @@ function Simulation() {
   const { Panel } = Collapse;
   const pieChartColors = ['#6f42c1', '#8f62d6', '#af82ea', '#ce9df7', '#ecb8ff'];
   
+  const dataSource = [
+    {
+      key: '1',
+      name: 'Volume',
+      age: 32,
+      address: '32',
+    },
+    
+    {
+      key: '2',
+      name: 'NSV',
+      age: 42,
+      address: '32',
+    },
+    {
+      key: '3',
+      name: 'NSV/Vol',
+      age: 42,
+      address: '32',
+    },
+    {
+      key: '4',
+      name: 'GM %',
+      age: 42,
+      address: '32',
+    },
+    {
+      key: '5',
+      name: 'MS %',
+      age: 42,
+      address: '32',
+    },
+  ];
+
+  const columns = [
+    {
+      title: 'Metrics',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Heinz' ,
+      children: [
+     { 
+      title: 'Value',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Delta %',
+      dataIndex: 'age',
+      key: 'age',
+    }
+    ],
+    colSpan: 2,
+    },
+    {
+      title: 'Total Category' ,
+      children: [
+     { 
+      title: 'Value',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: 'Delta %',
+      dataIndex: 'age',
+      key: 'age',
+    }
+    ], 
+    colSpan: 2,
+    },
+  ];
+
+
   const customPanelStyle = {
     border: "1px solid #80808033",
     borderRadius: "6px",
@@ -98,7 +181,10 @@ function Simulation() {
     }
     setValue(e.target.inputValue);
   };
-  
+
+  const iconColor = {
+    color: 'white',
+  }
   return (
     <>
       <PageHeader className="ninjadash-page-header-main" title="Simulation" routes={PageRoutes} />
@@ -106,7 +192,15 @@ function Simulation() {
       <Main>
         <Row gutter={25}>
             <Col md={14}>
-              <Cards title="Brands">
+            <Cards title={
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <h4 style={{ margin: 0, fontSize: '18px',fontWeight: 600 }}>Brands</h4>
+                  <Button size="default" type="primary">
+                  <FontAwesomeIcon icon={faArrowsRotate} />
+                    <span style={{fontSize: '15px',color: 'white'}}>Reset Price</span>
+                  </Button>
+                </div>
+              }>
                 <Row gutter={25} style={{marginBottom: '12.5px'}}>
                               <Col md={5}>
                                   
@@ -1009,8 +1103,76 @@ function Simulation() {
                   </Row>
                   
                 </Cards>
+              <Row gutter={25}>
+                <Col md={24} xs={24}>
+                  <Cards title="Metrics">
+                    <Table className="table-responsive" pagination={false} dataSource={dataSource} columns={columns} />
+                  </Cards>
+                </Col>
+              </Row>
+              <Row gutter={25}>
+          <Col md={12} xs={24}>
+          <Cards title="CSF" size="large" more={false}>
+          <ResponsiveContainer width="100%" height={300}>
+          <BarChart
+                  width={responsive - (5 * responsive) / 100}
+                  height={responsive / 2}
+                  data={dataRPI}
+                  layout='vertical'
+                  margin={{
+                    top: 20,
+                    right: window.innerWidth <= 375 ? 30 : 40,
+                    left: window.innerWidth <= 375 ? -18 : 0,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey='rpi' type="number">
+                  {/* <Label value= 'RPI' offset={0} position="insideBottom" /> */}
+                  </XAxis>
+                  <YAxis dataKey='name' type="category"/>
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="rpi" name= 'CSF' stackId="a" fill="#8f62d6" barSize={20}/>
+                  {/* <Bar dataKey="uv" stackId="a" fill="#82ca9d" /> */}
+                </BarChart>
+          </ResponsiveContainer>
+          
+          </Cards>
+          </Col>
+          <Col md={12} xs={24}>
+            <Cards title="Proposed RPI" size="large" more={false}>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                  width={responsive - (5 * responsive) / 100}
+                  height={responsive / 2}
+                  data={dataRPI}
+                  layout='vertical'
+                  margin={{
+                    top: 20,
+                    right: window.innerWidth <= 375 ? 30 : 40,
+                    left: window.innerWidth <= 375 ? -18 : 0,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey='rpi' type="number">
+                  {/* <Label value= 'RPI' offset={0} position="insideBottom" /> */}
+                  </XAxis>
+                  <YAxis dataKey='name' type="category"/>
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="rpi" name ='RPI' stackId="a" fill="#8f62d6" barSize={20}/>
+                  {/* <Bar dataKey="uv" stackId="a" fill="#82ca9d" /> */}
+                </BarChart>
+                </ResponsiveContainer>
+              </Cards>
+          </Col>
+        </Row>
             </Col>
         </Row>
+
+        
       </Main>
     </>
   );
