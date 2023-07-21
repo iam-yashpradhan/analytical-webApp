@@ -1065,7 +1065,7 @@ function Simulation() {
                 <Cards title="Simulations">
                   <Row gutter={25}>
                     <Col md={12}>
-                    <ResponsiveContainer width="100%" height={300}>
+                    <ResponsiveContainer width="100%" height={250}>
                     <BarChart
                       width={responsive - (5 * responsive) / 100}
                       height={responsive / 2}
@@ -1085,7 +1085,7 @@ function Simulation() {
                       <Legend/>
                       <ReferenceLine y={0} stroke="#000" />
                       {/* <Bar dataKey="pv" fill="#8884d8" /> */}
-                      <Bar dataKey="ms" name='Market Share' fill="#82ca9d" />
+                      <Bar dataKey="ms" name='Market Share' fill="#82ca9d" barSize={10} />
                     </BarChart>
                   </ResponsiveContainer>
                     </Col>
@@ -1093,7 +1093,7 @@ function Simulation() {
                     <Google3dPieChart
                     data={pieChartData}
                     width="100%"
-                    height="300px"
+                    height="250px"
                     title="Simulation"
                     chartArea="100%"
                     colors={pieChartColors}
