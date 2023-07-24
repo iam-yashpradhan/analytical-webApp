@@ -87,6 +87,22 @@ function Simulation() {
         setNewState({ ...newState, key });
       };  
 
+      // Calculations, Computations
+      const [value1, setValue1] = useState(0)
+      const [value2, setValue2] = useState('')
+
+      // const handleChange1 = (event) => {
+      //   const newValue = parseFloat(event.target.value);
+      //   setValue1(newValue);
+      //   setValue2(newValue + 5); // Add 5 to the value and update value2
+      // };
+
+      const handleChange2 = (event) => {
+        const newValue = parseFloat(event.target.value);
+        setValue2(newValue);
+        setValue1(newValue + 5); // Subtract 5 from the value and update value1
+      };
+      
   const {Item} =  Menu
   const { Panel } = Collapse;
   const pieChartColors = ['#6f42c1', '#8f62d6', '#af82ea', '#ce9df7', '#ecb8ff'];
@@ -246,8 +262,8 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} disabled
+                                  onChange={() => {}}
+                                  value={value1} disabled
                                   />
                               </Col>
                           </Row>   
@@ -326,8 +342,8 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  
-                                  onChange={handleChange} 
+                                  value={value2}
+                                  onChange={handleChange2}
                                   />
                               </Col>
                           </Row>   

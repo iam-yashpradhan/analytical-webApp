@@ -127,14 +127,15 @@ const ThemeLayout = (WrappedComponent) => {
                       className={topMenu && window.innerWidth > 991 ? 'ninjadash-logo top-menu' : 'ninjadash-logo'}
                       to="/admin"
                     >
-                      <img
+                      {/* <img
                         src={
                           layoutMode === 'lightMode'
-                            ? require(`../static/img/logo_dark.svg`).default
-                            : require(`../static/img/logo_white.svg`).default
+                            ? require(`../static/img/2.png`).default
+                            : require(`../static/img/2.png`).default
                         }
                         alt=""
-                      />
+                      /> */}
+                      <h2>Cogitaas</h2>
                     </Link>
                     {!topMenu || window.innerWidth <= 991 ? (
                       <Button type="link" onClick={toggleCollapsed}>
