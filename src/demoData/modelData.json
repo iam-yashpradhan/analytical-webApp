@@ -1,0 +1,177 @@
+{
+    "brand":[
+        {
+            "name": "heinz",
+            "variant": [
+                {
+                "type": "standard",
+                "ppg": [
+                {
+                    "type": "small",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                },
+                {
+                    "type": "medium",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                },
+                {
+                    "type": "large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                }
+            ]
+        },
+        {
+            "type": "healthy",
+            "ppg": [
+                {
+                    "type": "small",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                },
+                {
+                    "type": "medium",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                },
+                {
+                    "type": "large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                }
+            ]
+        }
+    ]
+
+        },
+        {
+            "name": "kotlin",
+            "variant": [
+        {
+            "type": "healthy",
+            "ppg": [
+                {
+                    "type": "small",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                },
+                {
+                    "type": "medium",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                },
+                {
+                    "type": "large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                }
+            ]
+        }
+    ]
+
+        },
+
+        {
+            "name": "private label",
+            "variant": [
+        {
+            "type": "healthy",
+            "ppg": [
+                {
+                    "type": "small",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                },
+                {
+                    "type": "medium",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                },
+                {
+                    "type": "large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                }
+            ]
+        }
+    ]
+
+        }
+
+
+    ]
+}

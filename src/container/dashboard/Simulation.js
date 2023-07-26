@@ -19,7 +19,7 @@ import { Button, BtnGroup } from '../../components/buttons/buttons';
 import config from '../../config/config';
 import {Slider} from '../../components/slider/slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsRotate, faShareNodes } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -102,6 +102,12 @@ function Simulation() {
         setValue2(newValue);
         setValue1(newValue + 5); // Subtract 5 from the value and update value1
       };
+
+      const handleResetPrice = () => {
+        setValue1(0);
+        setValue2(0); // Reset both input fields to initial values
+      };
+
       
   const {Item} =  Menu
   const { Panel } = Collapse;
@@ -211,7 +217,7 @@ function Simulation() {
             <Cards title={
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h4 style={{ margin: 0, fontSize: '18px',fontWeight: 600 }}>Brands</h4>
-                  <Button size="default" type="primary">
+                  <Button size="default" type="primary" onClick={handleResetPrice}>
                   <FontAwesomeIcon icon={faArrowsRotate} />
                     <span style={{fontSize: '15px',color: 'white'}}>Reset Price</span>
                   </Button>
@@ -1078,7 +1084,14 @@ function Simulation() {
               </Cards>
             </Col>
             <Col md={10}>
-                <Cards title="Simulations">
+                <Cards title={
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h4 style={{ margin: 0, fontSize: '18px',fontWeight: 600 }}>Simulations</h4>
+                    <Button size="default" type="primary">
+                    <FontAwesomeIcon icon={faShareNodes} />
+                      {/* <span style={{fontSize: '15px',color: 'white'}}>Reset Price</span> */}
+                    </Button></div>
+                }>
                   <Row gutter={25}>
                     <Col md={12}>
                     <ResponsiveContainer width="100%" height={250}>
