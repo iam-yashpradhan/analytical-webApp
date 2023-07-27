@@ -14,6 +14,7 @@ import ChartJs from '../../container/charts/ChartJs';
 import { Google3dPieChart } from '../../components/charts/google-chart';
 import gCharts from '../../demoData/google-charts.json';
 import rechartData from '../../demoData/recharts.json';
+import modelData from '../../demoData/modelData.json';
 import {ReloadOutlined} from '@ant-design/icons';
 import { Button, BtnGroup } from '../../components/buttons/buttons';
 import config from '../../config/config';
@@ -102,10 +103,18 @@ function Simulation() {
         setValue2(newValue);
         setValue1(newValue + 5); // Subtract 5 from the value and update value1
       };
+    
+      const [pc1, setPc1] = useState('') 
+      const [pc2, setPc2] = useState('') 
+
+      const priceChange = (event) =>{
+        const change = parseFloat(event.target.value);
+        setPc2(hzRegSm + (change/100)*hzRegSm);
+      }
 
       const handleResetPrice = () => {
-        setValue1(0);
-        setValue2(0); // Reset both input fields to initial values
+        setPc1(0);
+        setPc2(0); // Reset both input fields to initial values
       };
 
       
@@ -207,6 +216,18 @@ function Simulation() {
   const iconColor = {
     color: 'white',
   }
+  const hzRegSm = (modelData.brand[0].variant[0].ppg[0].values[0].sales)/
+  (modelData.brand[0].variant[0].ppg[0].values[0].volume)
+  const [hzRegMd, hzRegLg, hzRegXlg] = [5.3, 4.4, 3.7]
+
+  const hzRegSmCSF = (modelData.brand[0].variant[0].ppg[0].values[0].mcv/hzRegSm) 
+  console.log(hzRegSmCSF)
+
+  console.log((modelData.brand[0].variant[0].ppg[0].values[0].sales)/
+  (modelData.brand[0].variant[0].ppg[0].values[0].volume));
+
+
+
   return (
     <>
       <PageHeader className="ninjadash-page-header-main" title="Simulation" routes={PageRoutes} />
@@ -214,6 +235,8 @@ function Simulation() {
       <Main>
         <Row gutter={25}>
             <Col md={14}>
+                
+                <p></p>
             <Cards title={
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h4 style={{ margin: 0, fontSize: '18px',fontWeight: 600 }}>Brands</h4>
@@ -249,7 +272,7 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Heinz</h4>
+                                  <h4>{modelData.brand[0].name}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -280,7 +303,7 @@ function Simulation() {
                           <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Standard</h4>
+                                  <h4>{modelData.brand[0].variant[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -309,7 +332,226 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Small</h4>
+                                  <h4>{modelData.brand[0].variant[0].ppg[0].type}</h4>
+                              </Col>
+                          
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value= {hzRegSm}
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value={pc2}
+                                  onChange={() => {}} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='0'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.1" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value={pc1}
+                                  onChange={priceChange}
+                                  />
+                              </Col>
+                          </Row>   
+                          <Row gutter={25}>
+                              <Col md={4}>
+                                  <h4>{modelData.brand[0].variant[0].ppg[1].type}</h4>
+                              </Col>
+                          
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value={hzRegMd}
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='0'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                          </Row>  
+                          <Row gutter={25}>
+                              <Col md={4}>
+                                  <h4>{modelData.brand[0].variant[0].ppg[2].type}</h4>
+                              </Col>
+                          
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value={hzRegLg}
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='0'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                          </Row>  
+                          <Row gutter={25}>
+                              <Col md={4}>
+                                  <h4>{modelData.brand[0].variant[0].ppg[3].type}</h4>
+                              </Col>
+                          
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value={hzRegXlg}
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='0'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='8.44'
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  
+                                  onChange={handleChange} 
+                                  />
+                              </Col>
+                          </Row>  
+                      </div>
+                      </Panel>
+                    </Collapse><br></br>
+                    <Collapse defaultActiveKey="3">
+                      <Panel header={
+                          <div>
+                          <Row gutter={25}>
+                              <Col md={4}>
+                                  <h4>{modelData.brand[0].variant[1].type}</h4>
+                              </Col>
+                          
+                              <Col md={4}>
+                                
+                              </Col>
+                              <Col md={4}>
+                                  
+                              </Col>
+                              <Col md={4}>
+                                  
+                              </Col>
+                              <Col md={4}>
+                                
+                              </Col>
+                              <Col md={4}>
+                                  <input style={customPanelStyle}
+                                  type="number"
+                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
+                                  value='0'
+                                  onChange={handleChange} disabled
+                                  />
+                              </Col>
+                          </Row>   
+                      </div>
+                      } key="3">
+                      <div>
+                            <Row gutter={25}>
+                              <Col md={4}>
+                                  <h4>{modelData.brand[0].variant[1].ppg[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -355,7 +597,7 @@ function Simulation() {
                           </Row>   
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Medium</h4>
+                                  <h4>{modelData.brand[0].variant[1].ppg[1].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -398,10 +640,10 @@ function Simulation() {
                                   onChange={handleChange} 
                                   />
                               </Col>
-                          </Row>  
-                          <Row gutter={25}>
+                            </Row>  
+                            <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Large</h4>
+                                  <h4>{modelData.brand[0].variant[1].ppg[2].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -441,179 +683,6 @@ function Simulation() {
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
                                   
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                          </Row>  
-                      </div>
-                      </Panel>
-                    </Collapse><br></br>
-                    <Collapse defaultActiveKey="3">
-                      <Panel header={
-                          <div>
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Healthy</h4>
-                              </Col>
-                          
-                              <Col md={4}>
-                                
-                              </Col>
-                              <Col md={4}>
-                                  
-                              </Col>
-                              <Col md={4}>
-                                  
-                              </Col>
-                              <Col md={4}>
-                                
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                          </Row>   
-                      </div>
-                      } key="3">
-                      <div>
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Small</h4>
-                              </Col>
-                          
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                          </Row>   
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Medium</h4>
-                              </Col>
-                          
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                          </Row>  
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Large</h4>
-                              </Col>
-                          
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
                                   onChange={handleChange} 
                                   />
                               </Col>
@@ -630,7 +699,7 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Kotlin</h4>
+                                  <h4>{modelData.brand[1].name}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -661,7 +730,7 @@ function Simulation() {
                           <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Healthy</h4>
+                                  <h4>{modelData.brand[1].variant[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -710,7 +779,7 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Small</h4>
+                                  <h4>{modelData.brand[1].variant[0].ppg[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -756,7 +825,7 @@ function Simulation() {
                           </Row>   
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Medium</h4>
+                                  <h4>{modelData.brand[1].variant[0].ppg[1].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -802,7 +871,7 @@ function Simulation() {
                           </Row>  
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Large</h4>
+                                  <h4>{modelData.brand[1].variant[0].ppg[2].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -858,7 +927,7 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Private Label</h4>
+                                  <h4>{modelData.brand[2].name}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -883,13 +952,13 @@ function Simulation() {
                               </Col>
                           </Row>   
                       </div>
-                  } key="6">
-                    <Collapse defaultActiveKey="7">
+                  } key="4">
+                    <Collapse defaultActiveKey="5">
                       <Panel header={
                           <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Healthy</h4>
+                                  <h4>{modelData.brand[2].variant[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -934,11 +1003,11 @@ function Simulation() {
                               </Col>
                           </Row>   
                       </div>
-                      } key="7">
+                      } key="5">
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>Small</h4>
+                                  <h4>{modelData.brand[2].variant[0].ppg[0].type}</h4>
                               </Col>
                           
                               <Col md={4}>
@@ -982,98 +1051,7 @@ function Simulation() {
                                   />
                               </Col>
                           </Row>   
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Medium</h4>
-                              </Col>
                           
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                          </Row>  
-                          <Row gutter={25}>
-                              <Col md={4}>
-                                  <h4>Large</h4>
-                              </Col>
-                          
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} disabled
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                              <Col md={4}>
-                                  <input style={customPanelStyle}
-                                  type="number"
-                                  step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
-                                  onChange={handleChange} 
-                                  />
-                              </Col>
-                          </Row>  
                       </div>
                       </Panel>
                     </Collapse>

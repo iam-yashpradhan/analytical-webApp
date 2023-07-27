@@ -4,16 +4,16 @@
             "name": "heinz",
             "variant": [
                 {
-                "type": "standard",
+                "type": "regular",
                 "ppg": [
                 {
                     "type": "small",
                     "values": [
                         {
-                            "sales": "1", 
-                            "volume": "1",
-                            "mcv": "1", 
-                            "modelElasticity": "1"
+                            "sales":   3800497,                  
+                            "volume":   587653,
+                            "mcv": 11.90, 
+                            "modelElasticity": -5.38
                         }
                     ]
                 },
@@ -30,6 +30,17 @@
                 },
                 {
                     "type": "large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                },
+                {
+                    "type": "extra large",
                         "values": [
                             {
                                 "sales": "1", 
@@ -45,7 +56,7 @@
             "type": "healthy",
             "ppg": [
                 {
-                    "type": "small",
+                    "type": "medium",
                     "values": [
                         {
                             "sales": "1", 
@@ -56,7 +67,7 @@
                     ]
                 },
                 {
-                    "type": "medium",
+                    "type": "large",
                         "values": [
                             {
                                 "sales": "1", 
@@ -67,7 +78,7 @@
                         ]
                 },
                 {
-                    "type": "large",
+                    "type": "extra large",
                         "values": [
                             {
                                 "sales": "1", 
@@ -82,59 +93,14 @@
     ]
 
         },
-        {
-            "name": "kotlin",
-            "variant": [
-        {
-            "type": "healthy",
-            "ppg": [
-                {
-                    "type": "small",
-                    "values": [
-                        {
-                            "sales": "1", 
-                            "volume": "1",
-                            "mcv": "1", 
-                            "modelElasticity": "1"
-                        }
-                    ]
-                },
-                {
-                    "type": "medium",
-                        "values": [
-                            {
-                                "sales": "1", 
-                                "volume": "1",
-                                "mcv": "1", 
-                                "modelElasticity": "1"
-                            }
-                        ]
-                },
-                {
-                    "type": "large",
-                        "values": [
-                            {
-                                "sales": "1", 
-                                "volume": "1",
-                                "mcv": "1", 
-                                "modelElasticity": "1"
-                            }
-                        ]
-                }
-            ]
-        }
-    ]
-
-        },
-
         {
             "name": "private label",
             "variant": [
         {
-            "type": "healthy",
+            "type": "regular",
             "ppg": [
                 {
-                    "type": "small",
+                    "type": "medium",
                     "values": [
                         {
                             "sales": "1", 
@@ -143,17 +109,6 @@
                             "modelElasticity": "1"
                         }
                     ]
-                },
-                {
-                    "type": "medium",
-                        "values": [
-                            {
-                                "sales": "1", 
-                                "volume": "1",
-                                "mcv": "1", 
-                                "modelElasticity": "1"
-                            }
-                        ]
                 },
                 {
                     "type": "large",
@@ -165,7 +120,86 @@
                                 "modelElasticity": "1"
                             }
                         ]
+                },
+                {
+                    "type": "extra large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
                 }
+            ]
+        },
+        {
+            "type": "healthy",
+            "ppg": [
+                {
+                    "type": "medium",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                },
+                
+                {
+                    "type": "extra large",
+                        "values": [
+                            {
+                                "sales": "1", 
+                                "volume": "1",
+                                "mcv": "1", 
+                                "modelElasticity": "1"
+                            }
+                        ]
+                }
+            ]
+        },
+        {
+            "type": "organic",
+            "ppg": [
+                {
+                    "type": "medium",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+
+        },
+
+        {
+            "name": "hellmanns",
+            "variant": [
+        {
+            "type": "regular",
+            "ppg": [
+                {
+                    "type": "medium",
+                    "values": [
+                        {
+                            "sales": "1", 
+                            "volume": "1",
+                            "mcv": "1", 
+                            "modelElasticity": "1"
+                        }
+                    ]
+                }
+                
             ]
         }
     ]
