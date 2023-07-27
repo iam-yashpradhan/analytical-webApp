@@ -103,13 +103,51 @@ function Simulation() {
         setValue2(newValue);
         setValue1(newValue + 5); // Subtract 5 from the value and update value1
       };
-    
-      const [pc1, setPc1] = useState('') 
-      const [pc2, setPc2] = useState('') 
 
-      const priceChange = (event) =>{
+  const hzRegSm = (modelData.brand[0].variant[0].ppg[0].values[0].sales)/
+    (modelData.brand[0].variant[0].ppg[0].values[0].volume)
+  const [hzRegMd, hzRegLg, hzRegXlg] = [5.3, 4.4, 3.7]
+
+      const [pc1, setPc1] = useState(0);
+      const [pc2, setPc2] = useState(hzRegSm);
+      const [pc3, setPc3] = useState(0);
+      const [pc4, setPc4] = useState(hzRegMd);
+      const [pc5, setPc5] = useState(0);
+      const [pc6, setPc6] = useState(hzRegLg);
+      const [pc7, setPc7] = useState(0);
+      const [pc8, setPc8] = useState(hzRegXlg);
+      const [avg,setAvg] = useState((pc2+pc4+pc6+pc8)/4);
+
+
+  const priceChange = (event,type) =>{
         const change = parseFloat(event.target.value);
-        setPc2(hzRegSm + (change/100)*hzRegSm);
+        if(type=='small'){
+          const val=hzRegSm + (change/100)*hzRegSm;
+          setPc1(change);
+          setPc2(val);
+          const avg=(val+pc4+pc6+pc8)/4;
+          setAvg(avg);
+        }else if(type=='medium'){
+          const val=hzRegMd + (change/100)*hzRegMd;
+          setPc3(change);
+          setPc4(val);
+          const avg=(pc2+val+pc6+pc8)/4;
+          setAvg(avg);
+        }
+        else if(type=='large'){
+          const val=hzRegLg + (change/100)*hzRegLg;
+          setPc5(change);
+          setPc6(val);
+          const avg=(pc2+pc4+val+pc8)/4;
+          setAvg(avg);
+        }
+        else{
+          const val=hzRegXlg + (change/100)*hzRegXlg;
+          setPc7(change);
+          setPc8(val);
+          const avg=(pc2+pc4+pc6+val)/4;
+          setAvg(avg);
+        }
       }
 
       const handleResetPrice = () => {
@@ -203,7 +241,7 @@ function Simulation() {
     width: "100%",
     paddingLeft: "15px",
   }
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(0);
 
   const handleChange = (e) => {
     let inputValue = e.target.value;
@@ -216,9 +254,6 @@ function Simulation() {
   const iconColor = {
     color: 'white',
   }
-  const hzRegSm = (modelData.brand[0].variant[0].ppg[0].values[0].sales)/
-  (modelData.brand[0].variant[0].ppg[0].values[0].volume)
-  const [hzRegMd, hzRegLg, hzRegXlg] = [5.3, 4.4, 3.7]
 
   const hzRegSmCSF = (modelData.brand[0].variant[0].ppg[0].values[0].mcv/hzRegSm) 
   console.log(hzRegSmCSF)
@@ -322,7 +357,7 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='0'
+                                  value={avg}
                                   onChange={handleChange} disabled
                                   />
                               </Col>
@@ -332,7 +367,7 @@ function Simulation() {
                       <div>
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>{modelData.brand[0].variant[0].ppg[0].type}</h4>
+                                  <h4>{modelData.brand[0].variant[0].ppg[0].type}</h4> {/* HR Small*/}
                               </Col>
                           
                               <Col md={4}>
@@ -372,13 +407,13 @@ function Simulation() {
                                   type="number"
                                   step="0.1" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
                                   value={pc1}
-                                  onChange={priceChange}
+                                  onChange={()=>priceChange(event,modelData.brand[0].variant[0].ppg[0].type)}
                                   />
                               </Col>
                           </Row>   
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>{modelData.brand[0].variant[0].ppg[1].type}</h4>
+                                  <h4>{modelData.brand[0].variant[0].ppg[1].type}</h4> {/* HR Medium*/}
                               </Col>
                           
                               <Col md={4}>
@@ -393,7 +428,7 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
+                                    value={pc4}
                                   onChange={handleChange} disabled
                                   />
                               </Col>
@@ -417,14 +452,14 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  
-                                  onChange={handleChange} 
+                                    value={pc3}
+                                  onChange={() => priceChange(event,modelData.brand[0].variant[0].ppg[1].type)}
                                   />
                               </Col>
                           </Row>  
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>{modelData.brand[0].variant[0].ppg[2].type}</h4>
+                                  <h4>{modelData.brand[0].variant[0].ppg[2].type}</h4> {/* HR Large*/}
                               </Col>
                           
                               <Col md={4}>
@@ -439,7 +474,7 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
+                                  value={pc6}
                                   onChange={handleChange} disabled
                                   />
                               </Col>
@@ -455,22 +490,22 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
-                                  onChange={handleChange} 
+                                    value='8.44'
+                                  onChange={handleChange}
                                   />
                               </Col>
                               <Col md={4}>
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  
-                                  onChange={handleChange} 
+                                    value={pc5}
+                                  onChange={() => priceChange(event,modelData.brand[0].variant[0].ppg[2].type)}
                                   />
                               </Col>
                           </Row>  
                           <Row gutter={25}>
                               <Col md={4}>
-                                  <h4>{modelData.brand[0].variant[0].ppg[3].type}</h4>
+                                  <h4>{modelData.brand[0].variant[0].ppg[3].type}</h4> {/* HR XLarge*/}
                               </Col>
                           
                               <Col md={4}>
@@ -485,7 +520,7 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  value='8.44'
+                                  value={pc8}
                                   onChange={handleChange} disabled
                                   />
                               </Col>
@@ -509,8 +544,8 @@ function Simulation() {
                                   <input style={customPanelStyle}
                                   type="number"
                                   step="0.01" // Set the step attribute to control decimal precision (in this case, 2 decimal places)
-                                  
-                                  onChange={handleChange} 
+                                  value={pc7}
+                                  onChange={() => priceChange(event,modelData.brand[0].variant[0].ppg[3].type)}
                                   />
                               </Col>
                           </Row>  
